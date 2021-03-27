@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<head>
+    <meta charset = "UTF-8">
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12">
+    </script>
+    <link rel="stylesheet" href="../css/admin_page_style.css">
+    <title>管理员界面</title>
+</head>
+<body>
+    <div class="header" onclick="jumpHome()">
+        <span><img src= "../images/sjtu-logo.png" height=200, width=200>
+        <h2 style="color:#C8161E; font: '楷体'">上海交通大学运动会管理系统</h2></span>
+    </div>
+    <div class="nav">
+        <ul>
+            <li><a href="home.html">首页</a></li>
+            <li><a href="date.html">日程安排</a></li>
+            <li><a href="sign_up.html">参赛报名</a></li> 
+            <li style="float:right"><a href="login.html">用户登录</a></li>           
+            <li style="float:right"><a  class="active" href="admin_page.html">管理员界面</a></li>
+        </ul>
+    </div>
+    <main id="admin-page-main">
+        <div id="game-search">
+            <input type="text" id="game-searchbox" placeholder="搜索运动项目..." v-model="search" id="game-filter">
+            <button id="add-game-btn">添加项目</button>
+            <table id="search-result">
+                <tr><th>项目名称</th><th width="20%">操作</th></tr>
+                <tr v-for="item in filteredItems">
+                    <td>{{item.name}}</td>
+                    <td class="operation-col">
+                        <button class="ops-btn" onClick=" window.alert('请确认修改');">修改</button>
+                        <button class="ops-btn" onClick="window.alert('请确认删除')">删除</button>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <script>
+            const GameSearch = new Vue({
+                el: "#game-search",
+                data: {
+                    search: "",
+                    items: [
+                        { name: "跳高" },
+                        { name: "跳远" },
+                        { name: "100米" },
+                        { name: "400米" },
+                        { name: "1000米" },
+                        { name: "3000米" },
+                    ],
+                },
+                computed: {
+                    filteredItems() {
+                        return this.items.filter(
+                            item => {
+                                return item.name.toLowerCase().indexOf(this.search.toLowerCase()) > -1;
+                            }
+                        )
+                    }
+                }
+            });
+        </script>
+    </main><br><br><br>
+</body>
