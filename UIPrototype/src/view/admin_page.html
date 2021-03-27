@@ -5,18 +5,18 @@
     <link rel="stylesheet" href="../css/admin_page_style.css">
 </head>
 <body>
-    <header class="nav" id="navbar">
-        <div id="nav-title">学生运动会管理系统</div>
-        <button id="login-button"> {{ button_text }} </button>
-        <script>
-            const LoginButton = new Vue({
-                el: "#login-button",
-                data: {
-                    button_text: "登陆"
-                },
-            });
-        </script>
-    </header>
+    <div class="header" onclick="jumpHome()">
+        <span><img src= "../images/sjtu-logo.png" height=200, width=200>
+        <h2 style="color:#C8161E; font: '楷体'">上海交通大学运动会管理系统</h2></span>
+    </div>
+    <div class="nav">
+        <ul>
+            <li><a href="home.html">首页</a></li>
+            <li><a href="date.html">日程安排</a></li>
+            <li><a href="sign_up.html">参赛报名</a></li>            
+            <li style="float:right"><a class="active" href="admin_page.html">管理员界面</a></li>
+        </ul>
+    </div>
     <main id="admin-page-main">
         <div id="game-search">
             <input type="text" id="game-searchbox" placeholder="搜索运动项目..." v-model="search" id="game-filter">
@@ -57,5 +57,5 @@
                 }
             });
         </script>
-    </main>
+    </main><br><br><br>
 </body>
